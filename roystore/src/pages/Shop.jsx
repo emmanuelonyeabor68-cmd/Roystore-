@@ -28,19 +28,7 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* Category chips */}
-      <div className="px-4 md:px-12 mt-6 flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
-        {categories.map((cat, i) => (
-          <button
-            key={cat}
-            className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border ${
-              i === 0 ? 'border-primary text-primary bg-primary/5' : 'border-gray-200 text-gray-600'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+     
 
       {/* Grid */}
       <div className="px-4 md:px-12 py-8">

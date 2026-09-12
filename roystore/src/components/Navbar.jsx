@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex items-center justify-between px-4 md:px-12 py-4 relative z-30 bg-white">
+      <div className="sticky top-0 z-40 flex items-center justify-between px-4 md:px-12 py-4 bg-white">
         <button onClick={() => setMenuOpen(true)} className="md:hidden">
           <Menu size={26} className="text-gray-800" />
         </button>

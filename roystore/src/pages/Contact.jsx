@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-
+      <div className='md:grid md:grid-cols-2'>
       <div className="relative h-56 md:h-72 overflow-hidden">
         <img src="/contact-image.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
@@ -26,7 +26,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-10 grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl">
+      <div className="px-4 md:px-12 py-10 grid grid-cols-1 md:grid-cols- gap-10 max-w-4xl">
         <div>
           <h2 className="font-bold text-lg mb-4">Contact Information</h2>
           <div className="flex items-center gap-3 text-gray-600 text-sm mb-3">
@@ -72,6 +72,7 @@ export default function Contact() {
             </form>
           )}
         </div>
+      </div>
       </div>
 
       <div className="bg-gray-50 px-4 md:px-12 py-8 mt-10 text-center">

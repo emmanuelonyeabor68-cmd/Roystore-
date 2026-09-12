@@ -1,189 +1,129 @@
-import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, Search, ShoppingCart } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
-const popular = [
-  { id: 1, name: 'AirPods Pro 2', price: 15000, image: '/airpods.jpg' },
-  { id: 2, name: 'Nike Shoe', price: 45000, image: '/nike.jpg' },
-  { id: 3, name: 'Wrist Watch', price: 25000, image: '/watch.jpg' },
+const categories = [
+  { name: 'Electronics', image: '/electronics.jpg' },
+  { name: 'Fashion', image: '/fashion.jpg' },
+  { name: 'Home', image: '/home.jpg' },
+  { name: 'Accessories', image: '/accessories.jpg' },
 ];
 
-const newArrivals = [
-  { id: 4, name: 'Sony WH-1000XM5', price: 60000, image: '/sony.jpg' },
-  { id: 5, name: 'Canon EOS 2000D', price: 470000, image: '/canon.jpg' },
+const trending = [
+  { id: 1, name: 'Sony WH-1000XM5', price: 60000, image: '/sony.jpg' },
+  { id: 2, name: 'Canon EOS R6', price: 470000, image: '/canon.jpg' },
+  { id: 3, name: "Nike Air Force 1 '07", price: 45000, image: '/nike.jpg' },
+  { id: 4, name: 'Apple AirPods (3rd Gen)', price: 15000, image: '/airpods.jpg' },
+];
+
+const whyRoystore = [
+  { title: 'Quality checked', text: 'Every product is carefully inspected for quality and authenticity.' },
+  { title: 'Reliable delivery', text: 'Fast, secure and trackable shipping to your door.' },
+  { title: 'Real support', text: 'Friendly, human support whenever you need it.' },
 ];
 
 export default function LandingHome() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-    {/* Hero */}
-<div className="relative h-[500px] md:h-[600px] overflow-hidden">
-  <img
-    src="/hero-image.jpg"
-    alt="People shopping"
-    className="absolute inset-0 w-full h-full object-cover"
-  />
-  <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/50 to-transparent" />
-  <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12 max-w-xl md: mt-">
-    <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.05] mb-6 sm:mb-2  text-white">
-    Shop smarter.<h2 className="text-primary text-4xl md:text-6xl">Live brighter.</h2>
-    </h1>
-    <p className="text-gray-200 text-base mb-4">
-      Discover quality products, trusted brands, and the best prices — all in one place.
-    </p>
-    <div className="flex items-center gap-4">
-      <button onClick={() => navigate('/signup')} className="bg-primary text-white font-semibold rounded-xl px-6 py-3 text-base">
-        Shop Now
-      </button>
-     
-    </div>
-  </div>
-</div>
 
-    {/* Featured Products */}
-<div className="px-4 md:px-12 py-12 pt-4 md:pt-4 md:py-16 items-center">
-  <div className="flex flex:col text-center text-4xl md:justify-between md:flex-row md:items-center mb-2 md:mb-4">
-    <div className='w-full mb-2'>
-      <h2 className="text-2xl md:text-3xl font-extrabold">Featured Products</h2>
-    </div>
-  </div>
-  <div className="flex flex-col-2  md:grid md:grid-cols-3 gap-4 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
-    {popular.map((p) => (
-      <button
-        key={p.id}
-        onClick={() => navigate('/shop')}
-        className="min-w-[160px] md:min-w-0 shrink-0 border border-gray-200 rounded-xl overflow-hidden text-left group"
-      >
-        <div className="overflow-hidden">
-          <img
-            src={p.image}
-            alt={p.name}
-            className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-        <div className="p-3">
-          <p className="font-semibold text-sm truncate">{p.name}</p>
-          <p className="text-primary font-bold text-sm">₦{p.price.toLocaleString()}</p>
-        </div>
-      </button>
-    ))}
-  </div>
-  <Link to="/shop" className="text-center text-primary font-semibold text-sm mt-4 block md:hidden">View all →</Link>
-</div>
-
-{/* Best Seller spotlight — single product, full width */}
-<div className="px-4 mt-2 md:px-12 py-8 pt-1">
-  <div className="bg-gray-50 rounded-2xl overflow-hidden flex flex-col md:flex-row items-center">
-    <div className="w-full md:w-1/2">
-      <img
-        src="/sony.jpg"
-        alt="Sony WH-1000XM5"
-        className="w-full h-64 md:h-96 object-cover"
-      />
-    </div>
-    <div className="w-full md:w-1/2 p-6 md:p-12">
-      <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">
-        BEST SELLER
-      </span>
-      <h3 className="text-2xl md:text-3xl font-extrabold mb-2">Sony WH-1000XM5</h3>
-      <p className="text-gray-500 mb-4">
-        Our most-loved headphones — premium noise cancellation, all-day comfort, and sound worth talking about.
-      </p>
-      <p className="text-primary font-bold text-xl mb-5">₦60,000</p>
-      <button
-        onClick={() => navigate('/shop')}
-        className="bg-primary text-white font-semibold rounded-xl px-6 py-3"
-      >
-        Shop Now
-      </button>
-    </div>
-  </div>
-</div>
-
-{/* New Arrival spotlight — mirrored layout */}
-<div className="px-4 md:px-12 py-8">
-  <div className="bg-gray-50 rounded-2xl overflow-hidden flex flex-col md:flex-row-reverse items-center">
-    <div className="w-full md:w-1/2">
-      <img
-        src="/canon.jpg"
-        alt="Canon EOS 2000D"
-        className="w-full h-64 md:h-96 object-cover"
-      />
-    </div>
-    <div className="w-full md:w-1/2 p-6 md:p-12">
-      <span className="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">
-        NEW ARRIVAL
-      </span>
-      <h3 className="text-2xl md:text-3xl font-extrabold mb-2">Canon EOS 2000D</h3>
-      <p className="text-gray-500 mb-4">
-        Just landed — capture every moment in stunning detail with our newest DSLR pick.
-      </p>
-      <p className="text-primary font-bold text-xl mb-5">₦470,000</p>
-      <button
-        onClick={() => navigate('/shop')}
-        className="bg-primary text-white font-semibold rounded-xl px-6 py-3"
-      >
-        Shop Now
-      </button>
-    </div>
-  </div>
-</div>
-
-{/* Why Shop with Roystore */}
-<div className="px-4 md:px-12 py-12 md:py-16 bg-gray-50">
-  <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-2">Why Shop with Roystore</h2>
-  <p className="text-gray-500 text-center mb-10 max-w-lg mx-auto">
-    We're building a shopping experience you can actually trust.
-  </p>
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-    {[
-      { title: 'Verified Sellers', text: 'Every seller on Roystore is checked, so you can shop with confidence.' },
-      { title: 'Fast Delivery', text: 'Quick, reliable delivery, right to your doorstep.' },
-      { title: 'Fair Prices', text: 'Quality products without the markup.' },
-      { title: 'Easy Returns', text: 'Not satisfied? Return it, hassle-free.' },
-    ].map((item) => (
-      <div key={item.title} className="bg-white rounded-2xl p-6 text-center border border-gray-100">
-        <h3 className="font-bold mb-2">{item.title}</h3>
-        <p className="text-gray-500 text-sm">{item.text}</p>
-      </div>
-    ))}
-  </div>
-</div>
-
-      
-      {/* About + Contact teasers */}
-      <div className="px-4 md:px-12 py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-gray-50 rounded-2xl p-6">
-          <h3 className="font-bold text-lg mb-2">About Roystore</h3>
-          <p className="text-gray-500 text-sm mb-4">
-            A practice project built to learn real-world full-stack e-commerce development.
+      <div className="relative h-64 md:h-[500px] overflow-hidden">
+        <img src="/hero-image.jpg" alt="People shopping" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
+        <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12 max-w-xl">
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight[1.0] mb-1 text-white">
+            Shop smarter. <h1 className="text-primary">Live brighter.</h1>
+          </h1>
+          <p className="text-gray-200 text-base mb-3">
+            Discover quality products, trusted brands, and the best prices — all in one place.
           </p>
-          <Link to="/about" className="text-primary font-semibold text-sm">Learn more →</Link>
-        </div>
-        <div className="bg-gray-50 rounded-2xl p-6">
-          <h3 className="font-bold text-lg mb-2">Get in touch</h3>
-          <p className="text-gray-500 text-sm mb-4">
-            Questions? Reach out and we'll get back to you.
-          </p>
-          <Link to="/contact" className="text-primary font-semibold text-sm">Contact us →</Link>
+          <div className="flex items-center gap-3">
+            <button onClick={() => navigate('/signup')} className="bg-primary text-white font-semibold rounded-xl px-4 py-2">
+              Shop Now
+            </button>
+          </div>
         </div>
       </div>
-      <div className="relative h-72 md:h-96 mx-4 md:mx-12 my-8 rounded-2xl overflow-hidden">
-        <img src="/section-image.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-        <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-10 max-w-md">
-          <h2 className="text-white text-2xl font-bold mb-2">Quality you can feel</h2>
-          <p className="text-gray-200 text-sm">Every product, checked and trusted before it reaches you.</p>
+
+      <div className="px-4 md:px-12 py-6 md:py-14">
+        <h2 className="text-xl md:text-2xl font-bold mb-5">Shop by category</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {categories.map((cat) => (
+            <button key={cat.name} onClick={() => navigate('/login')} className="bg-primary/5 rounded-2xl p-5 flex flex-col items-center text-center">
+              <div className="w-full aspect-square rounded-xl overflow-hidden mb-3 bg-white">
+                <img src={cat.image} alt={cat.name} loading="lazy" className="w-full h-full object-cover" />
+              </div>
+              <p className="font-semibold text-sm">{cat.name}</p>
+            </button>
+          ))}
         </div>
       </div>
-      {/* Footer */}
+
+      <div className="px-4 md:px-12 py-6">
+        <div className="flex justify-between items-center mb-5">
+          <h2 className="text-xl md:text-2xl font-bold">Trending now</h2>
+          <Link to="/login" className="font-semibold text-sm text-primary">View all →</Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {trending.map((p) => (
+            <button key={p.id} onClick={() => navigate('/login')} className="bg-white border border-gray-200 rounded-2xl overflow-hidden text-left">
+              <div className="w-full aspect-square bg-gray-50">
+                <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-3">
+                <p className="font-semibold text-sm truncate">{p.name}</p>
+                <p className="text-primary font-bold text-sm mt-0.5">₦{p.price.toLocaleString()}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="px-4 md:px-12 py-5">
+        <div className="bg-primary/5 rounded-3xl overflow-hidden flex flex-col md:flex-row items-center">
+          <div className="w-full md:w-1/2 aspect-square md:aspect-auto md:h-80 bg-white">
+            <img src="/sony.jpg" alt="Sony WH-1000XM5" loading="lazy" className="w-full h-full object-contain p-6" />
+          </div>
+          <div className="w-full md:w-1/2 p-6 md:p-10">
+            <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">Best seller</span>
+            <h3 className="text-2xl font-bold mb-2">Sony WH-1000XM5</h3>
+            <p className="text-gray-500 text-sm mb-5">Immersive sound, powerful noise cancellation.</p>
+            <button onClick={() => navigate('/login')} className="bg-primary text-white font-semibold rounded-xl px-6 py-3 text-sm">View product</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-4 md:px-12 py-6 md:py-14">
+        <h2 className="text-xl md:text-2xl font-bold mb-6">Why Roystore</h2>
+        <div className="max-w-2xl space-y-5">
+          {whyRoystore.map((item, i) => (
+            <div key={item.title} className={`flex items-start gap-4 pb-5 ${i < whyRoystore.length - 1 ? 'border-b border-gray-200' : ''}`}>
+              <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <div className="w-4 h-4 rounded-full bg-primary" />
+              </div>
+              <div>
+                <p className="font-bold text-sm mb-1">{item.title}</p>
+                <p className="text-gray-500 text-sm">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="px-4 md:px-12 pb-10">
+        <div className="bg-primary rounded-3xl flex items-center min-h-[200px] p-8 md:p-14">
+          <div className="max-w-xs">
+            <h2 className="text-white text-2xl font-bold mb-5 leading-snug">Find something made for your everyday.</h2>
+            <button onClick={() => navigate('/login')} className="bg-white text-primary font-semibold rounded-full px-6 py-3 text-sm">
+              Explore the collection
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-gray-50 px-4 md:px-12 py-10">
-        <div className="grid  md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <img src="/logo.png" alt="Roystore" className="w-7 h-7" />
@@ -193,7 +133,7 @@ export default function LandingHome() {
           </div>
           <div>
             <p className="font-semibold text-sm mb-2">Shop</p>
-            <Link to="/shop" className="block text-gray-500 text-sm mb-1">All Products</Link>
+            <Link to="/login" className="block text-gray-500 text-sm mb-1">All Products</Link>
           </div>
           <div>
             <p className="font-semibold text-sm mb-2">Company</p>
