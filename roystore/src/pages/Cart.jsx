@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trash2, Minus, Plus } from 'lucide-react';
 import api from '../api/axios';
+import { useCart } from '../context/CartContext';
 import BottomNav from '../components/BottomNav';
 
 export default function Cart() {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { refreshCart } = useCart();
   const navigate = useNavigate();
 
   const loadCart = () => {
@@ -19,14 +21,14 @@ export default function Cart() {
     if (quantity < 1) return;
     await api.patch(`/api/v1/cart-items/${itemId}/`, { quantity });
     loadCart();
+    refreshCart();
   };
 
   const removeItem = async (itemId) => {
     await api.delete(`/api/v1/cart-items/${itemId}/`);
     loadCart();
+    refreshCart();
   };
-
-  const handleCheckout = () => navigate('/checkout');
 
   if (loading) return <p className="p-4 text-gray-400 text-sm">Loading...</p>;
 
@@ -34,15 +36,13 @@ export default function Cart() {
   const total = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
 
   return (
-    <div className="min-h-screen bg-white pb-24">
+    <div className="min-h-screen bg-white pb-28">
       <h1 className="text-xl font-bold px-4 pt-4 mb-4">Your Cart</h1>
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
           <p className="text-gray-500 mb-4">Your cart is empty</p>
-          <button onClick={() => navigate('/products')} className="bg-primary text-white font-semibold rounded-xl px-6 py-3">
-            Continue Shopping
-          </button>
+          <button onClick={() => navigate('/search')} className="bg-primary text-white font-semibold rounded-xl px-6 py-3">Continue Shopping</button>
         </div>
       ) : (
         <>
@@ -51,11 +51,7 @@ export default function Cart() {
               const inStock = item.product.stock > 0;
               return (
                 <div key={item.id} className="border border-gray-200 rounded-xl p-3 flex gap-3">
-                  <img
-                    src={item.product.image}
-                    alt={item.product.name}
-                    className={`w-20 h-20 rounded-lg object-cover ${inStock ? '' : 'opacity-40'}`}
-                  />
+                  <img src={item.product.image} alt={item.product.name} className={`w-20 h-20 rounded-lg object-cover ${inStock ? '' : 'opacity-40'}`} />
                   <div className="flex-1">
                     <div className="flex justify-between">
                       <p className="font-semibold text-sm">{item.product.name}</p>
@@ -84,14 +80,12 @@ export default function Cart() {
               <span className="font-semibold">Total</span>
               <span className="font-bold text-primary">₦{total.toLocaleString()}</span>
             </div>
-            <button onClick={handleCheckout} className="w-full bg-primary text-white font-semibold rounded-xl py-3">
-              Proceed to Checkout
-            </button>
+            <button onClick={() => navigate('/checkout')} className="w-full bg-primary text-white font-semibold rounded-xl py-3">Proceed to Checkout</button>
           </div>
         </>
       )}
 
-      <BottomNav cartCount={items.length} />
+      <BottomNav />
     </div>
   );
 }

@@ -17,12 +17,12 @@ export default function Navbar() {
   return (
     <>
       <div className="sticky top-0 z-40 flex items-center justify-between px-4 md:px-12 py-4 bg-white">
-        <button onClick={() => setMenuOpen(true)} className="md:hidden">
+        <button onClick={() => setMenuOpen(true)} className="absolute right-0 md:hidden">
           <Menu size={26} className="text-gray-800" />
         </button>
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Roystore" className="w-8 h-8" />
-          <span className="font-extrabold text-primary text-lg">Roystore</span>
+          <img src="/logo.png" alt="Roystore" className="w-8 h-8 hidden" />
+          <span className="font-extrabold text-primary text-2xl">Roystore</span>
         </Link>
         <nav className="hidden md:flex items-center gap-10 text-gray-700 font-medium text-sm">
           {links.map((l) => (
@@ -41,34 +41,31 @@ export default function Navbar() {
             Login
           </button>
         </div>
-        <button onClick={() => navigate('/login')} className="md:hidden">
-          <ShoppingCart size={22} className="text-gray-800" />
-        </button>
+       
       </div>
 
       {menuOpen && (
         <div className="fixed inset-0 bg-black/40 z-50" onClick={() => setMenuOpen(false)}>
           <div
-            className="absolute left-0 top-0 h-full w-64 bg-white p-6 flex flex-col shadow-xl"
+            className="absolute right-0 top-0 h-50 w-full bg-white p-6 flex flex-col shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-2">
-                <img src="/logo.png" alt="Roystore" className="w-7 h-7" />
-                <span className="font-extrabold text-primary">Roystore</span>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center text-center gap-">
+                <span className="font-extrabold text-primary text-2xl text ">Roystore</span>
               </div>
               <button onClick={() => setMenuOpen(false)}>
                 <X size={22} className="text-gray-500" />
               </button>
             </div>
-            <nav className="flex flex-col gap-5 text-gray-700 font-medium">
+            <nav className="flex flex-col gap-5 text-gray-700 font-medium items-center">
               {links.map((l) => (
                 <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)}>
                   {l.label}
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto flex flex-col gap-3">
+            <div className="flex flex-col gap-3 mt-4">
               <button onClick={() => navigate('/login')} className="border border-primary text-primary rounded-xl py-2.5 font-semibold text-sm">Log In</button>
               <button onClick={() => navigate('/signup')} className="bg-primary text-white rounded-xl py-2.5 font-semibold text-sm">Sign Up</button>
             </div>

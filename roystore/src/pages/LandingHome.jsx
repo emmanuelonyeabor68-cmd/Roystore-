@@ -23,13 +23,12 @@ const whyRoystore = [
 
 export default function LandingHome() {
   const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="relative h-64 md:h-[500px] overflow-hidden">
-        <img src="/hero-image.jpg" alt="People shopping" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="relative h-[55vh] md:h-[500px] overflow-hidden">
+        <img src="/hero-image.jpg" alt="People shopping" className="absolute inset-0 sm:w-full md:w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12 max-w-xl">
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight[1.0] mb-1 text-white">
@@ -94,9 +93,9 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-6 md:py-14">
+      <div className="px-4 md:px-12 py-6 md:py-14 md:grid md:grid-col-3 ">
         <h2 className="text-xl md:text-2xl font-bold mb-6">Why Roystore</h2>
-        <div className="max-w-2xl space-y-5">
+        <div className="max-w-2xl space-y-5 md:grid md:grid-cols-3">
           {whyRoystore.map((item, i) => (
             <div key={item.title} className={`flex items-start gap-4 pb-5 ${i < whyRoystore.length - 1 ? 'border-b border-gray-200' : ''}`}>
               <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
