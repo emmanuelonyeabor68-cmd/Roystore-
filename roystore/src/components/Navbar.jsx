@@ -50,15 +50,15 @@ export default function Navbar() {
             className="absolute right-0 top-0 h-50 w-full bg-white p-6 flex flex-col shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center text-center gap-">
+            <div className="flex justify-between items-left mb-2">
+              <div className="flex items-left text-center gap-">
                 <span className="font-extrabold text-primary text-2xl text ">Roystore</span>
               </div>
               <button onClick={() => setMenuOpen(false)}>
                 <X size={22} className="text-gray-500" />
               </button>
             </div>
-            <nav className="flex flex-col gap-5 text-gray-700 font-medium items-center">
+            <nav className="flex flex-col gap-5 text-gray-700 font-medium items-left">
               {links.map((l) => (
                 <Link key={l.to} to={l.to} onClick={() => setMenuOpen(false)}>
                   {l.label}

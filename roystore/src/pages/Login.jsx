@@ -12,13 +12,16 @@ export default function Login() {
   const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
+// const loggedIn = await login(email, password);
+// navigate(loggedIn.is_staff ? '/admin/dashboard' : '/dashboard')
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      const loggedIn = await login(email, password);
+      navigate(loggedIn.is_staff ? '/admin/dashboard' : '/dashboard')  
     } catch (err) {
       setError('Invalid email or password');
     } finally {

@@ -19,12 +19,13 @@ export function AuthProvider({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const login = async (email, password) => {
-    const res = await api.post('/auth/v1/login/', { email, password });
-    setAccessToken(res.data.access);
-    const userRes = await api.get('/auth/users/me/');
-    setUser(userRes.data);
-  };
+ const login = async (email, password) => {
+  const res = await api.post('/auth/v1/login/', { email, password });
+  setAccessToken(res.data.access);
+  const userRes = await api.get('/auth/users/me/');
+  setUser(userRes.data);
+  return userRes.data;
+};
 
   const signup = async (fullName, email, password) => {
     await api.post('/auth/users/', { full_name: fullName, email, password });
@@ -41,7 +42,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, loginWithGoogle, logout }}>
+    <AuthContext.Provider value={{ user, setUser, loading, login, signup, loginWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );

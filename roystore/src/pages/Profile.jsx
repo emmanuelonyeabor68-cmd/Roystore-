@@ -32,7 +32,7 @@ export default function Profile() {
             <div className="flex items-center gap-3"><Package size={18} className="text-primary" /><span className="text-sm">My Orders</span></div>
             <ChevronRight size={16} className="text-gray-400" />
           </button>
-          <button className="w-full flex items-center justify-between p-4">
+          <button onClick={() => navigate('/change-password')} className="w-full flex items-center justify-between p-4">
             <div className="flex items-center gap-3"><Lock size={18} className="text-primary" /><span className="text-sm">Change Password</span></div>
             <ChevronRight size={16} className="text-gray-400" />
           </button>

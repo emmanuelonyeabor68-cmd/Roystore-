@@ -16,6 +16,18 @@ import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import OrderDetail from './pages/OrderDetail';
+import Notifications from './pages/Notifications';
+import ChangePassword from './pages/ChangePassword';
+import AdminRoute from './routes/AdminRoute';
+import AdminLayout from './admin/AdminLayout';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminProducts from './admin/AdminProducts';
+import AdminOrders from './admin/AdminOrders';
+import AdminCustomers from './admin/AdminCustomers';
+import AdminReports from './admin/AdminReports';
+import AdminSettings from './admin/AdminSettings';
+import { Navigate } from 'react-router-dom';
 
 export default function App() {
   return (
@@ -23,6 +35,15 @@ export default function App() {
       <CartProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+                <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="products" element={<AdminProducts />} />
+                <Route path="orders" element={<AdminOrders />} />
+                <Route path="customers" element={<AdminCustomers />} />
+                <Route path="reports" element={<AdminReports />} />
+                <Route path="settings" element={<AdminSettings />} />
+          </Route>
             <Route path="/" element={<LandingHome />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
@@ -36,6 +57,9 @@ export default function App() {
             <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
             <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/orders/:id" element={<ProtectedRoute><OrderDetail /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+            <Route path="/change-password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
