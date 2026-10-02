@@ -28,19 +28,19 @@ function SidebarBody({ onNavigate }) {
         <span className="font-extrabold text-primary text-lg">Roystore</span>
       </div>
 
-      <nav className="flex-1 px-3 space-y-1">
+      <nav className="flex-1 px-4 pt-6 space-y-2">
         {nav.map(({ to, label, icon: Icon }) => (
           <NavLink
             key={to}
             to={to}
             onClick={onNavigate}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              `flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium transition-colors ${
                 isActive ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-50'
               }`
             }
           >
-            <Icon size={18} />
+            <Icon size={22} />
             {label}
           </NavLink>
         ))}
@@ -91,7 +91,7 @@ export default function AdminLayout() {
             <Link to="/dashboard" className="flex items-center gap-1.5 text-sm font-medium text-primary">
               <Store size={16} /> View store
             </Link>
-            <span className="text-sm font-medium text-gray-700 hidden sm:block">{user?.full_name || 'Admin'}</span>
+            {/* <span className="text-sm font-medium text-gray-700 hidden sm:block">{user?.full_name || 'Admin'}</span> */}
           </div>
         </header>
         <main className="p-4 md:p-8"><Outlet /></main>
