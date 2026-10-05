@@ -10,7 +10,7 @@ import { useCart } from '../context/CartContext';
 const categoryRow = [
   { name: 'Electronics', image: '/electronics.jpg' },
   { name: 'Fashion', image: '/fashion.jpg' },
-  { name: 'Home', image: '/home.jpg' },
+  { name: 'Home & Living', image: '/home.jpg' },
 ];
 
 export default function Home() {
@@ -29,7 +29,8 @@ export default function Home() {
   const newArrivals = [...products].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-white pb-24">
+    <div className='min-h-screen bg-white pb-24'>
+    <div className="sticky top-0 z-40 bg-white pb-3 border-b border-gray-50">
       <div className=" flex justify-between items-center px-4 pt-4">
         <div className="flex items-center gap-2">
           <img src="/logo.png" alt="Roystore" className="w-8 h-8" />
@@ -41,6 +42,8 @@ export default function Home() {
       <button onClick={() => navigate('/search')} className=" flex items-center border border-gray-200 rounded-xl mx-4 mt-4 px-3 py-2.5 w-[calc(100%-2rem)] text-left">
         <span className="text-gray-400 text-sm">Search for products, categories, brands...</span>
       </button>
+      </div>
+      
 
 {/* Hero — matches Landing page style */}
 <div className="relative h-48 md:h-72 mt-4 mx-4 rounded-2xl overflow-hidden">
@@ -59,7 +62,7 @@ export default function Home() {
 
       {/* Featured Drop */}
 {bestSeller && (
-  <div className="px-4 mt-6">
+  <div className="px-4 mt-6 md:hidden">
     <div className="flex justify-between items-center mb-3">
       <h2 className="font-bold text-lg">Featured Drop</h2>
     </div>
@@ -67,7 +70,7 @@ export default function Home() {
       onClick={() => navigate(`/products/${bestSeller.id}`)}
       className="w-full bg-primary/5 rounded-2xl overflow-hidden flex items-center text-left"
     >
-      <img src={bestSeller.image} alt={bestSeller.name} loading="lazy" className="w-40 h-32 object-cover shrink-0" />
+      <img src={bestSeller.image} alt={bestSeller.name} loading="lazy" className="w-56 h-32 object-cover shrink-0" />
       <div className="p-4 pr-6 flex-1">
         <p className="text-primary text-[10px] font-bold uppercase tracking-wide mb-1">New this week</p>
         <p className="font-bold text-base mb-1">{bestSeller.name}</p>
@@ -90,7 +93,7 @@ export default function Home() {
 )}
 
       <div className="mt-6">
-        <div className="flex justify-between items-center px-4 mb-3">
+        <div className="flex justify-between items-center px-4 mb-3 md:flex md:flex-col-3">
           <h2 className="font-bold text-lg">Popular Products</h2>
           <Link to="/search" className="text-primary text-sm font-medium">View all</Link>
         </div>
@@ -133,12 +136,13 @@ export default function Home() {
           {categoryRow.map((cat) => (
             <button key={cat.name} onClick={() => navigate(`/search?category=${encodeURIComponent(cat.name)}`)} className="rounded-xl overflow-hidden border border-gray-100 text-left">
               <img src={cat.image} alt={cat.name} loading="lazy" className="w-full h-20 object-cover" />
-              <div className="p-2"><p className="font-semibold text-xs">{cat.name}</p></div>
+              <div className="p-2"><p className="font-semibold text-xs text-center">{cat.name}</p></div>
             </button>
           ))}
         </div>
-      </div>
 
+
+      </div>
       <BottomNav />
     </div>
   );

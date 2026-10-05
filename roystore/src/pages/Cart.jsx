@@ -10,6 +10,8 @@ export default function Cart() {
   const [loading, setLoading] = useState(true);
   const { refreshCart } = useCart();
   const navigate = useNavigate();
+  
+
 
   const loadCart = () => {
     api.get('/api/v1/cart/').then((res) => setCart(res.data)).finally(() => setLoading(false));
@@ -37,7 +39,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-white pb-28">
-      <h1 className="text-xl font-bold px-4 pt-4 mb-4">Your Cart</h1>
+      <h1 className="text-xl font-bold px-4 pt-4 mb-4">My Cart</h1>
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
@@ -74,8 +76,13 @@ export default function Cart() {
               );
             })}
           </div>
+ <div className="flex justify-between px-4 pt-6">
+    <span className="font-semibold">Delivery Fee</span>
+    <span className="text-green-600 font-semibold">Free</span>
+  </div>
+  
 
-          <div className="px-4 mt-6 border-t border-gray-100 pt-4">
+          <div className="px-4 mt-4 border-t border-gray-100 pt-1">
             <div className="flex justify-between mb-4">
               <span className="font-semibold">Total</span>
               <span className="font-bold text-primary">₦{total.toLocaleString()}</span>

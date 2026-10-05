@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import api from '../api/axios';
@@ -12,6 +12,15 @@ export default function Checkout() {
   const [success, setSuccess] = useState(false);
   const { refreshCart } = useCart();
   const navigate = useNavigate();
+  const [cartTotal, setCartTotal] = useState(0)
+
+
+  useEffect(() => {
+  api.get('/api/v1/cart/').then((res) => {
+    const items = res.data.items || [];
+    setCartTotal(items.reduce((sum, i) => sum + i.product.price * i.quantity, 0));
+  });
+}, []);
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
@@ -41,6 +50,7 @@ export default function Checkout() {
   }
 
   return (
+    
     <div className="min-h-screen bg-white px-5 pt-6 pb-10">
       <h1 className="text-xl font-bold mb-1">Shipping Information</h1>
       <p className="text-gray-500 text-sm mb-6">Where should we deliver your order?</p>
@@ -55,6 +65,21 @@ export default function Checkout() {
         <label className="text-sm font-medium block mb-1">Phone Number</label>
         <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="080..."
           className="w-full border border-gray-200 rounded-xl px-4 py-3 mb-8 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" />
+         <div className="border border-gray-100 rounded-2xl p-4 mb-6 space-y-2">
+  <div className="flex justify-between text-sm">
+    <span className="text-gray-500">Subtotal</span>
+    <span>₦{Number(cartTotal).toLocaleString()}</span>
+  </div>
+  
+  <div className="flex justify-between text-sm">
+    <span className="text-gray-500">Delivery Fee</span>
+    <span className="text-green-600 font-semibold">Free</span>
+  </div>
+  <div className="flex justify-between items-center pt-2 border-t border-gray-100">
+    <span className="font-semibold">Total</span>
+    <span className="text-primary font-bold text-lg">₦{Number(cartTotal).toLocaleString()}</span>
+  </div>
+</div> 
 
         <button type="submit" disabled={placing} className="w-full bg-primary text-white font-semibold rounded-xl py-3 disabled:opacity-60">
           {placing ? 'Placing order...' : 'Place Order'}
