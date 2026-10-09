@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <div className="min-h-screen bg-white pb-24 lg:pb-12">
       <div className="mx-auto max-w-5xl lg:pl-64">
-        <h1 className="text-xl font-bold px-4 pt-4 mb-4">Profile</h1>
+        <h1 className="sticky top-0 z-40 bg-white text-xl font-bold px-4 pt-4 pb-4 mb-4">Profile</h1>
         <div className="px-4">
           <div className="flex items-center gap-3 border border-gray-100 rounded-2xl p-4 mb-6 bg-gray-50">
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">

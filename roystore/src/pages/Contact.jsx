@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
@@ -77,6 +78,10 @@ export default function Contact() {
 
       <div className="bg-gray-50 px-4 md:px-12 py-8 mt-10 text-center">
         <p className="text-gray-400 text-xs">© 2026 Roystore. All rights reserved.</p>
+        <div className="mt-2 flex justify-center gap-4 text-xs">
+          <Link to="/terms" className="text-gray-500 hover:text-primary">Terms of Use</Link>
+          <Link to="/privacy" className="text-gray-500 hover:text-primary">Privacy Policy</Link>
+        </div>
         <p className="text-gray-400 text-xs mt-1">Built by Emmanuel</p>
       </div>
     </div>

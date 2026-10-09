@@ -21,7 +21,7 @@ export default function Navbar() {
           <Menu size={26} className="text-gray-800" />
         </button>
         <Link to="/" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Roystore" className="w-8 h-8 hidden" />
+          <img src="/logo.png" alt="" className="w-8 h-8 object-contain" />
           <span className="font-extrabold text-primary text-2xl">Roystore</span>
         </Link>
         <nav className="hidden md:flex items-center gap-10 text-gray-700 font-medium text-sm">

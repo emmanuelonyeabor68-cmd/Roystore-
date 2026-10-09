@@ -130,6 +130,9 @@ export default function Signup() {
         <p className="text-center text-gray-500 text-sm">
           Already have an account? <Link to="/login" className="text-primary font-semibold">Log in</Link>
         </p>
+        <p className="mt-5 text-center text-xs leading-relaxed text-gray-500">
+          By creating an account, you agree to our <Link to="/terms" className="font-medium text-primary hover:underline">Terms of Use</Link> and acknowledge our <Link to="/privacy" className="font-medium text-primary hover:underline">Privacy Policy</Link>.
+        </p>
         </form>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -23,15 +24,39 @@ const whyRoystore = [
 
 export default function LandingHome() {
   const navigate = useNavigate();
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    const elements = pageRef.current?.querySelectorAll('[data-scroll-reveal]');
+    if (!elements?.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white">
+    <div ref={pageRef} className="min-h-screen bg-white">
       <Navbar />
 
       <div className="relative h-[55vh] md:h-[500px] overflow-hidden">
         <img src="/hero-image.jpg" alt="People shopping" className="absolute inset-0 sm:w-full md:w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12 max-w-xl">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight[1.0] mb-1 text-white">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold leading-tight[1.0] mb-1 text-white">
             Shop smarter. <h1 className="text-primary">Live brighter.</h1>
           </h1>
           <p className="text-gray-200 text-base lg:text-lg mb-3">
@@ -45,7 +70,7 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-6 md:py-14">
+      <div data-scroll-reveal className="scroll-reveal px-4 md:px-12 py-6 md:py-14">
         <h2 className="text-xl md:text-2xl font-bold mb-5">Shop by category</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat) => (
@@ -59,7 +84,7 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-6">
+      <div data-scroll-reveal className="scroll-reveal px-4 md:px-12 py-6">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-xl md:text-2xl font-bold">Trending now</h2>
           <Link to="/login" className="font-semibold text-sm text-primary">View all →</Link>
@@ -79,10 +104,10 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-2">
+      <div data-scroll-reveal className="scroll-reveal px-4 md:px-12 py-2">
         <div className="bg-primary/5 rounded-3xl overflow-hidden flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 aspect-square md:aspect-auto md:h-80 bg-white">
-            <img src="/sony.jpg" alt="Sony WH-1000XM5" loading="lazy" className="w-full h-70 object-contain p-2" />
+            <img src="/sony.jpg" alt="Sony WH-1000XM5" loading="lazy" className="w-full h-70 object-contain p-2 md:h-full md:object-cover md:p-0" />
           </div>
           <div className="w-full md:w-1/2 p-3 md:p-10">
             <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded- mb-3">Best seller</span>
@@ -93,11 +118,11 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-4 md:py-14">
-        <h2 className="text-xl md:text-2xl font-bold mb-6 lg:text-center">Why Roystore ?</h2>
-        <div className="max-w-2xl space-y-5 md:grid md:grid-cols-3">
+      <div data-scroll-reveal className="scroll-reveal px-4 md:px-12 py-4 md:py-14">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 lg:text-center">Why Choose Roystore ?</h2>
+        <div className="max-w-2xl space-y-5 md:grid md:grid-cols-3 lg:max-w-none lg:gap-8 lg:space-y-0">
           {whyRoystore.map((item, i) => (
-            <div key={item.title} className={`flex items-start gap-4 pb-5 ${i < whyRoystore.length - 1 ? 'border-b border-gray-200' : ''}`}>
+            <div key={item.title} className={`flex items-start gap-4 pb-5 lg:flex-col lg:items-center lg:gap-3 lg:pb-0 lg:text-center ${i < whyRoystore.length - 1 ? 'border-b border-gray-200 lg:border-b-0' : ''}`}>
               <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                 <div className="w-4 h-4 rounded-full bg-primary" />
               </div>
@@ -111,18 +136,18 @@ export default function LandingHome() {
       </div>
 
 
-      <div className="relative w-full h-48 md:h-64 lg:h-80 mx md:mx-12 mt-1 overflow-hidden">
+      <div data-scroll-reveal className="scroll-reveal relative w-full h-48 md:h-64 lg:h-80 mx md:mx-12 mt-1 overflow-hidden">
         <img src="/cta.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
         <div className="relative z-10 h-full max-w-xs px-6 mt-9 lg:max-w-xl lg:flex lg:flex-col lg:justify-center lg:mt-0 lg:ml-12">
           <h1 className="text-white text-2xl md:text-3xl lg:text-5xl font-extrabold">Find something made for your everyday.</h1>
-          <button onClick={() => navigate('/login')} className="bg-white text-primary font-semibold rounded-full px-6 py-3 text-sm mt-3">
+          <button onClick={() => navigate('/login')} className="bg-white text-primary font-semibold rounded-full px-6 py-3 text-sm mt-3 md:mt-5">
               Explore the collection
             </button>
         </div>
       </div>
 
-      <div className="px-3 md:px-12 py-7 bg-black mt-1">
+      <div data-scroll-reveal className="scroll-reveal px-3 md:px-12 py-7 bg-black mt-1">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -148,6 +173,10 @@ export default function LandingHome() {
         </div>
         <div className="border-t border-gray-200 pt-4 text-center">
           <p className="text-white text-xs">© 2026 Roystore. All rights reserved.</p>
+          <div className="mt-2 flex justify-center gap-4 text-xs">
+            <Link to="/terms" className="text-gray-300 hover:text-white">Terms of Use</Link>
+            <Link to="/privacy" className="text-gray-300 hover:text-white">Privacy Policy</Link>
+          </div>
           <p className="text-white text-xs mt-1">Built by Emmanuel</p>
         </div>
       </div>

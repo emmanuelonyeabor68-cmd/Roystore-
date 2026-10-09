@@ -3,6 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
+const getLoginErrorMessage = (err) => {
+  const data = err.response?.data;
+  const messages = [
+    data?.detail,
+    data?.message,
+    data?.error,
+    data?.non_field_errors,
+    data?.email,
+    data?.password,
+  ];
+  const message = messages
+    .flatMap((value) => Array.isArray(value) ? value : [value])
+    .find((value) => typeof value === 'string' && value.trim());
+
+  if (typeof message === 'string' && message.trim()) return message;
+  if (!err.response) return 'Could not connect to the server. Check your connection and try again.';
+  if (err.response.status === 401) return 'Invalid email or password.';
+  if (err.response.status === 403) return 'Your account cannot sign in right now. Please contact support.';
+  if (err.response.status === 429) return 'Too many sign-in attempts. Please wait a moment and try again.';
+  if (err.response.status >= 500) return 'The server could not complete your sign-in. Please try again later.';
+  return 'Sign-in failed. Please check your details and try again.';
+};
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +46,7 @@ export default function Login() {
       const loggedIn = await login(email, password);
       navigate(loggedIn.is_staff ? '/admin/dashboard' : '/dashboard')  
     } catch (err) {
-      setError('Invalid email or password');
+      setError(getLoginErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -86,6 +109,9 @@ export default function Login() {
 
         <p className="text-center text-gray-500 text-sm">
           Don't have an account? <Link to="/signup" className="text-primary font-semibold">Sign up</Link>
+        </p>
+        <p className="mt-5 text-center text-xs leading-relaxed text-gray-500">
+          By continuing, you agree to our <Link to="/terms" className="font-medium text-primary hover:underline">Terms of Use</Link> and acknowledge our <Link to="/privacy" className="font-medium text-primary hover:underline">Privacy Policy</Link>.
         </p>
         </form>
       </div>

@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
 
   // On page load, try to use the httpOnly refresh cookie to restore the session
   useEffect(() => {
-    const publicPaths = ['/', '/login', '/signup', '/shop', '/about', '/contact']
+    const publicPaths = ['/', '/login', '/signup', '/shop', '/about', '/contact', '/terms', '/privacy']
     if (publicPaths.includes(window.location.pathname)) {
       setLoading(false);
       return;

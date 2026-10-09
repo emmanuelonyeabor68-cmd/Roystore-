@@ -40,7 +40,7 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-white pb-28 lg:pb-12">
       <div className="mx-auto max-w-5xl lg:pl-64">
-        <h1 className="text-xl font-bold px-4 pt-4 mb-4">My Cart</h1>
+        <h1 className="sticky top-0 z-40 bg-white text-xl font-bold px-4 pt-4 pb-4 mb-4">My Cart</h1>
 
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 px-4 text-center">

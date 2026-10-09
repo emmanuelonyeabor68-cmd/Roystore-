@@ -50,9 +50,16 @@ export default function Orders() {
   return (
     <div className="min-h-screen bg-white pb-24 lg:pb-12">
       <div className="mx-auto max-w-5xl lg:pl-64">
-        <div className="flex justify-between items-center px-4 pt-4 mb-4">
+        <div className="sticky top-0 z-40 flex justify-between items-center px-4 pt-4 pb-4 mb-4 bg-white">
           <h1 className="text-xl font-extrabold">My Orders</h1>
-          <Bell size={22} className="text-gray-700" />
+          <button
+            type="button"
+            onClick={() => navigate('/notifications')}
+            aria-label="Notifications"
+            className="text-gray-700"
+          >
+            <Bell size={22} />
+          </button>
         </div>
 
         <div className="flex items-center border border-gray-200 rounded-xl mx-4 px-3 py-2.5 mb-4">

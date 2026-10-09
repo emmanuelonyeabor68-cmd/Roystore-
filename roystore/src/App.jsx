@@ -19,6 +19,7 @@ import NotFound from './pages/NotFound';
 import OrderDetail from './pages/OrderDetail';
 import Notifications from './pages/Notifications';
 import ChangePassword from './pages/ChangePassword';
+import Policies from './pages/Policies';
 import AdminRoute from './routes/AdminRoute';
 import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
@@ -48,6 +49,8 @@ export default function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<Policies />} />
+            <Route path="/privacy" element={<Policies />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<ProtectedRoute><Home /></ProtectedRoute>} />
