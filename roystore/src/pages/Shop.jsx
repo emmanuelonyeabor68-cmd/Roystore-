@@ -19,12 +19,12 @@ export default function Shop() {
       <Navbar />
 
       {/* Small hero banner instead of a bare title */}
-      <div className="relative h-48 md:h-64 mx-4 md:mx-12 mt-4 rounded-2xl overflow-hidden">
+      <div className="relative h-48 md:h-64 lg:h-80 mx-4 md:mx-12 mt-4 rounded-2xl overflow-hidden">
         <img src="/shop-banner.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
         <div className="relative z-10 h-full flex flex-col justify-center px-6">
-          <h1 className="text-white text-2xl md:text-3xl font-extrabold">Explore the Shop</h1>
-          <p className="text-gray-200 text-sm mt-1">Quality picks across every category</p>
+          <h1 className="text-white text-2xl md:text-3xl lg:text-5xl font-extrabold">Explore the Shop</h1>
+          <p className="text-gray-200 text-sm mt-1 lg:text-lg">Quality picks across every category</p>
         </div>
       </div>
 

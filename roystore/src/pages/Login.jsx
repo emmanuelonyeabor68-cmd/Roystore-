@@ -30,17 +30,18 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-purple-150 px-6 pt-24 pb-6 flex flex-col items-center">
-      <div className="flex flex-col items-center mb-5">
-        <img src="/logo.png" alt="Roystore" className="w-14 h-15 pt-2 mb-0" />
-        <h1 className="text-primary text-5xl font-extrabold mb-2">Roystore</h1>
-      </div>
+    <div className="min-h-screen bg-purple-150 px-6 pt-24 pb-6 flex flex-col items-center lg:justify-center">
+      <div className="w-full max-w-md mx-auto">
+        <div className="flex flex-col items-center mb-5">
+          <img src="/logo.png" alt="Roystore" className="w-14 h-15 pt-2 mb-0" />
+          <h1 className="text-primary text-5xl font-extrabold mb-2">Roystore</h1>
+        </div>
 
-      <h2 className="text-3xl font-bold mb-1">Welcome back!</h2>
-      <p className="text-gray-500 text-1xl mb-8">Login to continue shopping</p>
+        <h2 className="text-3xl font-bold mb-1 text-center">Welcome back!</h2>
+        <p className="text-gray-500 text-1xl mb-8 text-center">Login to continue shopping</p>
 
-      <form onSubmit={handleSubmit} className="w-full max-w-sm">
-        {error && <p className="text-red-500 text-sm mb-4 flex flex-col items-center">{error}</p>}
+        <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
+          {error && <p className="text-red-500 text-sm mb-4 flex flex-col items-center">{error}</p>}
 
         <label className="text-sm font-medium block mb-1">Email Address</label>
         <div className="flex items-center border border-gray-200 rounded-xl px-4 py-3 mb-4 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
@@ -86,7 +87,8 @@ export default function Login() {
         <p className="text-center text-gray-500 text-sm">
           Don't have an account? <Link to="/signup" className="text-primary font-semibold">Sign up</Link>
         </p>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

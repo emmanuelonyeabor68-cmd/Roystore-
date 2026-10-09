@@ -4,11 +4,13 @@ import { ArrowLeft, Wrench } from 'lucide-react';
 export default function ComingSoon({ title = 'This page' }) {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <div className="flex items-center gap-3 px-4 pt-4">
-        <button onClick={() => navigate(-1)}><ArrowLeft size={22} /></button>
+    <div className="min-h-screen bg-white flex flex-col lg:items-center">
+      <div className="w-full max-w-5xl lg:px-8">
+        <div className="flex items-center gap-3 px-4 pt-4">
+          <button onClick={() => navigate(-1)}><ArrowLeft size={22} /></button>
+        </div>
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 text-center w-full max-w-md mx-auto lg:pt-12">
         <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
           <Wrench size={28} className="text-primary" />
         </div>

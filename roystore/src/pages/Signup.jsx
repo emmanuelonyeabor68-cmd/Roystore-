@@ -60,17 +60,18 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-purple-150 px-6 pt-24 pb-6 flex flex-col items-center">
-      <div className="flex flex-col items-center mb-5">
-        <img src="/logo.png" alt="Roystore" className="w-14 h-18 pt-2 mb-0" />
-        <h1 className="text-primary text-5xl font-extrabold mb-2">Roystore</h1>
-      </div>
+    <div className="min-h-screen bg-purple-150 px-6 pt-24 pb-6 flex flex-col items-center lg:justify-center">
+      <div className="w-full max-w-md mx-auto">
+        <div className="flex flex-col items-center mb-5">
+          <img src="/logo.png" alt="Roystore" className="w-14 h-18 pt-2 mb-0" />
+          <h1 className="text-primary text-5xl font-extrabold mb-2">Roystore</h1>
+        </div>
 
-      <h2 className="text-2xl font-bold mb-1">Create your account</h2>
-      <p className="text-gray-500 mb-8 text-center">Join Roystore and start shopping smarter</p>
+        <h2 className="text-2xl font-bold mb-1 text-center">Create your account</h2>
+        <p className="text-gray-500 mb-8 text-center">Join Roystore and start shopping smarter</p>
 
-      <form onSubmit={handleSubmit} className="w-full max-w-sm">
-        {formError && <p className="text-red-500 text-sm mb-4">{formError}</p>}
+        <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
+          {formError && <p className="text-red-500 text-sm mb-4">{formError}</p>}
 
         {/* Full Name */}
         <label className="text-sm font-medium block mb-1">Full Name</label>
@@ -129,7 +130,8 @@ export default function Signup() {
         <p className="text-center text-gray-500 text-sm">
           Already have an account? <Link to="/login" className="text-primary font-semibold">Log in</Link>
         </p>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

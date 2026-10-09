@@ -21,8 +21,8 @@ export default function Contact() {
         <img src="/contact-image.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white">Get in Touch</h1>
-          <p className="text-gray-200 mt-2">We'd love to hear from you.</p>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white">Get in Touch</h1>
+          <p className="text-gray-200 mt-2 lg:text-lg">We'd love to hear from you.</p>
         </div>
       </div>
 
@@ -46,7 +46,7 @@ export default function Contact() {
               Thanks for reaching out! We'll get back to you soon.
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
               <label className="text-sm font-medium block mb-1">Name</label>
               <input
                 value={name} onChange={(e) => setName(e.target.value)}

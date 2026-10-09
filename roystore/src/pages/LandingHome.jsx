@@ -31,11 +31,11 @@ export default function LandingHome() {
         <img src="/hero-image.jpg" alt="People shopping" className="absolute inset-0 sm:w-full md:w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-4 md:px-12 max-w-xl">
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight[1.0] mb-1 text-white">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight[1.0] mb-1 text-white">
             Shop smarter. <h1 className="text-primary">Live brighter.</h1>
           </h1>
-          <p className="text-gray-200 text-base mb-3">
-            Discover quality products, trusted brands, and the best prices — all in one place.
+          <p className="text-gray-200 text-base lg:text-lg mb-3">
+            Discover quality products, trusted brands, and the best prices, all in one place.
           </p>
           <div className="flex items-center gap-3">
             <button onClick={() => navigate('/signup')} className="bg-primary text-white font-semibold rounded-xl px-4 py-2">
@@ -79,13 +79,13 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-5">
+      <div className="px-4 md:px-12 py-2">
         <div className="bg-primary/5 rounded-3xl overflow-hidden flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 aspect-square md:aspect-auto md:h-80 bg-white">
-            <img src="/sony.jpg" alt="Sony WH-1000XM5" loading="lazy" className="w-full h-full object-contain p-6" />
+            <img src="/sony.jpg" alt="Sony WH-1000XM5" loading="lazy" className="w-full h-70 object-contain p-2" />
           </div>
-          <div className="w-full md:w-1/2 p-6 md:p-10">
-            <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">Best seller</span>
+          <div className="w-full md:w-1/2 p-3 md:p-10">
+            <span className="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded- mb-3">Best seller</span>
             <h3 className="text-2xl font-bold mb-2">Sony WH-1000XM5</h3>
             <p className="text-gray-500 text-sm mb-5">Immersive sound, powerful noise cancellation.</p>
             <button onClick={() => navigate('/login')} className="bg-primary text-white font-semibold rounded-xl px-6 py-3 text-sm">View product</button>
@@ -93,8 +93,8 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 py-6 md:py-14 md:grid md:grid-col-3 ">
-        <h2 className="text-xl md:text-2xl font-bold mb-6">Why Roystore</h2>
+      <div className="px-4 md:px-12 py-4 md:py-14">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 lg:text-center">Why Roystore ?</h2>
         <div className="max-w-2xl space-y-5 md:grid md:grid-cols-3">
           {whyRoystore.map((item, i) => (
             <div key={item.title} className={`flex items-start gap-4 pb-5 ${i < whyRoystore.length - 1 ? 'border-b border-gray-200' : ''}`}>
@@ -110,44 +110,45 @@ export default function LandingHome() {
         </div>
       </div>
 
-      <div className="px-4 md:px-12 pb-10">
-        <div className="bg-primary rounded-3xl flex items-center min-h-[200px] p-8 md:p-14">
-          <div className="max-w-xs">
-            <h2 className="text-white text-2xl font-bold mb-5 leading-snug">Find something made for your everyday.</h2>
-            <button onClick={() => navigate('/login')} className="bg-white text-primary font-semibold rounded-full px-6 py-3 text-sm">
+
+      <div className="relative w-full h-48 md:h-64 lg:h-80 mx md:mx-12 mt-1 overflow-hidden">
+        <img src="/cta.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
+        <div className="relative z-10 h-full max-w-xs px-6 mt-9 lg:max-w-xl lg:flex lg:flex-col lg:justify-center lg:mt-0 lg:ml-12">
+          <h1 className="text-white text-2xl md:text-3xl lg:text-5xl font-extrabold">Find something made for your everyday.</h1>
+          <button onClick={() => navigate('/login')} className="bg-white text-primary font-semibold rounded-full px-6 py-3 text-sm mt-3">
               Explore the collection
             </button>
-          </div>
         </div>
       </div>
 
-      <div className="bg-gray-50 px-4 md:px-12 py-10">
+      <div className="px-3 md:px-12 py-7 bg-black mt-1">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <img src="/logo.png" alt="Roystore" className="w-7 h-7" />
               <span className="font-extrabold text-primary">Roystore</span>
             </div>
-            <p className="text-gray-400 text-xs">Your one-stop shop for quality products at the best prices.</p>
+            <p className="text-white text-xs">Your one-stop shop for quality products at the best prices.</p>
           </div>
           <div>
-            <p className="font-semibold text-sm mb-2">Shop</p>
-            <Link to="/login" className="block text-gray-500 text-sm mb-1">All Products</Link>
+            <p className="font-semibold text-sm text-white mb-2">Shop</p>
+            <Link to="/login" className="block text-white text-sm mb-1">All Products</Link>
           </div>
           <div>
-            <p className="font-semibold text-sm mb-2">Company</p>
-            <Link to="/about" className="block text-gray-500 text-sm mb-1">About</Link>
-            <Link to="/contact" className="block text-gray-500 text-sm">Contact</Link>
+            <p className="font-semibold text-sm text-white mb-2">Company</p>
+            <Link to="/about" className="block text-white text-sm mb-1">About</Link>
+            <Link to="/contact" className="block text-white text-sm">Contact</Link>
           </div>
           <div>
-            <p className="font-semibold text-sm mb-2">Support</p>
-            <p className="text-gray-400 text-sm mb-1">FAQs (coming soon)</p>
-            <p className="text-gray-400 text-sm">Shipping (coming soon)</p>
+            <p className="font-semibold text-sm text-white mb-2">Support</p>
+            <p className="text-white text-sm mb-1">FAQs (coming soon)</p>
+            <p className="text-white text-sm">Shipping (coming soon)</p>
           </div>
         </div>
         <div className="border-t border-gray-200 pt-4 text-center">
-          <p className="text-gray-400 text-xs">© 2026 Roystore. All rights reserved.</p>
-          <p className="text-gray-400 text-xs mt-1">Built by Emmanuel</p>
+          <p className="text-white text-xs">© 2026 Roystore. All rights reserved.</p>
+          <p className="text-white text-xs mt-1">Built by Emmanuel</p>
         </div>
       </div>
     </div>
