@@ -119,10 +119,10 @@ export default function LandingHome() {
       </div>
 
       <div data-scroll-reveal className="scroll-reveal px-4 md:px-12 py-4 md:py-14">
-        <h2 className="text-xl md:text-2xl font-bold mb-6 lg:text-center">Why Choose Roystore ?</h2>
-        <div className="max-w-2xl space-y-5 md:grid md:grid-cols-3 lg:max-w-none lg:gap-8 lg:space-y-0">
+        <h2 className="text-xl md:text-2xl font-bold mb-6 md:text-center">Why Choose Roystore ?</h2>
+        <div className="max-w-2xl space-y-5 md:max-w-none md:grid md:grid-cols-3 md:gap-8 md:space-y-0">
           {whyRoystore.map((item, i) => (
-            <div key={item.title} className={`flex items-start gap-4 pb-5 lg:flex-col lg:items-center lg:gap-3 lg:pb-0 lg:text-center ${i < whyRoystore.length - 1 ? 'border-b border-gray-200 lg:border-b-0' : ''}`}>
+            <div key={item.title} className={`flex items-start gap-4 pb-5 md:flex-col md:items-center md:gap-3 md:pb-0 md:text-center ${i < whyRoystore.length - 1 ? 'border-b border-gray-200 md:border-b-0' : ''}`}>
               <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                 <div className="w-4 h-4 rounded-full bg-primary" />
               </div>
@@ -136,7 +136,7 @@ export default function LandingHome() {
       </div>
 
 
-      <div data-scroll-reveal className="scroll-reveal relative w-full h-48 md:h-64 lg:h-80 mx md:mx-12 mt-1 overflow-hidden">
+      <div data-scroll-reveal className="scroll-reveal relative w-full h-48 md:h-80 mx md:mx-12 mt-1 overflow-hidden">
         <img src="/cta.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/20" />
         <div className="relative z-10 h-full max-w-xs px-6 mt-9 lg:max-w-xl lg:flex lg:flex-col lg:justify-center lg:mt-0 lg:ml-12">

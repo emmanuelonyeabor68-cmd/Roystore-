@@ -45,7 +45,7 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="relative h-48 md:h-72 lg:h-96 mt-4 mx-4 rounded-2xl overflow-hidden">
+        <div className="relative h-48 md:h-96 mt-4 mx-4 rounded-2xl overflow-hidden">
           <img src="/hero-image6.jpg" alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/0" />
           <div className="relative z-10 h-full flex flex-col justify-center px-5 max-w-xs lg:max-w-2xl lg:px-10">
@@ -101,7 +101,7 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-3">
             {categoryRow.map((cat) => (
               <button key={cat.name} onClick={() => navigate(`/search?category=${encodeURIComponent(cat.name)}`)} className="rounded-xl overflow-hidden border border-gray-100 text-left">
-                <img src={cat.image} alt={cat.name} loading="lazy" className="w-full h-20 object-cover lg:h-32" />
+                <img src={cat.image} alt={cat.name} loading="lazy" className="w-full h-20 object-cover md:h-32" />
                 <div className="p-2"><p className="font-semibold text-xs text-center">{cat.name}</p></div>
               </button>
             ))}

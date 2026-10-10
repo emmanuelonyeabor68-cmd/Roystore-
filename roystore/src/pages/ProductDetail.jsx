@@ -34,7 +34,7 @@ export default function ProductDetail() {
     <div className="bg-white">
       <div className="mx-auto max-w-5xl lg:pl-64">
         <div className="relative">
-          <img src={product.image} alt={product.name} loading="lazy" className="w-full h-80 object-cover lg:h-[28rem]" />
+          <img src={product.image} alt={product.name} loading="lazy" className="w-full h-full object-cover md:h-[28rem]" />
           <button onClick={() => navigate(-1)} className="absolute top-4 left-4 bg-white rounded-full p-2 shadow-md">
             <ArrowLeft size={20} />
           </button>
