@@ -14,7 +14,7 @@ export default function About() {
 
       <div className="px-4 md:px-12 py-10 max-w-2xl">
   <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm rounded-xl p-4 mb-6">
-    ⚠️ Heads up: Roystore is a practice project built to learn full-stack development. It's not a real store — no real products are sold and no real payments are processed here.
+     Heads up: Roystore is a practice project built to learn full-stack development. It's not a real store — no real products are sold and no real payments are processed here.
   </div>
 
   <p className="text-gray-600 mb-4 leading-relaxed">

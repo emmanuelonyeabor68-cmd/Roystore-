@@ -8,7 +8,7 @@ const allProducts = [
   { id: 3, name: 'Wrist Watch', price: 25000, image: '/watch.jpg' },
   { id: 4, name: 'Sony WH-1000XM5', price: 60000, image: '/sony.jpg' },
   { id: 5, name: 'Canon EOS 2000D', price: 470000, image: '/canon.jpg' },
-  { id: 6, name: 'Classic Fit Shirt', price: 18500, image: '/products/shirt.jpg' },
+  { id: 6, name: 'Classic Fit Shirt', price: 18500, image: '/shirt.jpg' },
 ];
 
 export default function Shop() {
