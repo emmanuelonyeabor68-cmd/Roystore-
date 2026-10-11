@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import api, { setAccessToken } from '../api/axios';
+import api, { refreshAccessToken, setAccessToken } from '../api/axios';
 
 const AuthContext = createContext();
 
@@ -15,11 +15,8 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    api.post('/auth/v1/refresh/')
-      .then((res) => {
-        setAccessToken(res.data.access);
-        return api.get('/auth/users/me/');
-      })
+    refreshAccessToken()
+      .then(() => api.get('/auth/users/me/'))
       .then((res) => setUser(res.data))
       .catch(() => setAccessToken(null))
       .finally(() => setLoading(false));

@@ -9,6 +9,23 @@ let accessToken = null;
 export const setAccessToken = (token) => { accessToken = token; };
 export const getAccessToken = () => accessToken;
 
+let refreshPromise = null;
+
+export const refreshAccessToken = () => {
+  if (!refreshPromise) {
+    refreshPromise = api.post('/auth/v1/refresh/')
+      .then((res) => {
+        setAccessToken(res.data.access);
+        return res;
+      })
+      .finally(() => {
+        refreshPromise = null;
+      });
+  }
+
+  return refreshPromise;
+};
+
 api.interceptors.request.use((config) => {
   if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
   return config;
@@ -24,7 +41,11 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && originalRequest && !originalRequest._retry && !isAuthRequest) {
       originalRequest._retry = true;
       try {
-        const res = await api.post('/auth/v1/refresh/');
+        if (accessToken && originalRequest.headers?.Authorization !== `Bearer ${accessToken}`) {
+          return api(originalRequest);
+        }
+
+        const res = await refreshAccessToken();
         setAccessToken(res.data.access);
         originalRequest.headers.Authorization = `Bearer ${res.data.access}`;
         return api(originalRequest);
