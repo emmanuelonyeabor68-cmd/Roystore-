@@ -105,7 +105,7 @@ export default function Orders() {
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
-                    <p className="font-bold text-sm truncate">Order #{order.id}</p>
+                    <p className="font-bold text-sm truncate"></p>
                     <span className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full capitalize ${STATUS_STYLES[order.status] || 'bg-gray-100 text-gray-600'}`}>
                       {order.status}
                     </span>
