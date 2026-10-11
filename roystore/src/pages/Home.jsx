@@ -24,7 +24,7 @@ export default function Home() {
     api.get('/api/v1/products/').then((res) => setProducts(res.data.results || [])).finally(() => setLoading(false));
   }, []);
 
-  const popular = products.slice(0, 8);
+  const popular = products.slice(7, 15);
   // const bestSeller = products[1];
   const newArrivals = [...products].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
 
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="mx-4 mt-6 bg-gradient-to-r from-primary to-purple-700 rounded-2xl p-5 flex items-center justify-between">
           <div>
             <p className="text-yellow-300 text-xs font-bold mb-1">FREE DELIVERY</p>
-            <p className="text-white font-bold">On all orders over ₦50,000</p>
+            <p className="text-white font-bold">On all orders over ₦10,000</p>
           </div>
           <button
             onClick={() => navigate('/search')}
