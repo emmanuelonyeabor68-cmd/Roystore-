@@ -110,7 +110,7 @@ export default function Orders() {
                       {order.status}
                     </span>
                   </div>
-                  <p className="text-gray-400 text-xs mt-0.5">
+                  <p className="text-gray-400 text-xs ">
                     {new Date(order.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {order.items?.length || 0} item{order.items?.length === 1 ? '' : 's'}
                   </p>
                   <p className="text-primary font-bold text-sm mt-1 mb-4">₦{Number(order.total).toLocaleString()}</p>
