@@ -34,9 +34,10 @@ export function AuthProvider({ children }) {
     await api.post('/auth/users/', { full_name: fullName, email, password });
   };
 
-  const loginWithGoogle = () => {
-    window.location.href = `${api.defaults.baseURL}/auth/google/login/`;
-  };
+const loginWithGoogle = () => {
+  window.location.href =
+    `${api.defaults.baseURL}/social-auth/login/google-oauth2/`;
+};
 
   const logout = async () => {
     await api.post('/auth/v1/logout/');
