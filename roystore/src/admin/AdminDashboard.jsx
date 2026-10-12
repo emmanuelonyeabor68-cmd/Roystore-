@@ -5,6 +5,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import api from '../api/axios';
 import { fetchAll, naira, dailySales, STATUSES, STATUS_COLORS } from './utils';
 import { StatusBadge, PageHeader } from './AdminUI';
+import { SkeletonBlock } from '../components/Skeletons';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -53,7 +54,16 @@ export default function AdminDashboard() {
       <PageHeader title="Admin Dashboard" subtitle="Overview of your store" />
 
       {loading ? (
-        <p className="text-gray-400 text-sm">Loading...</p>
+        <div role="status" aria-label="Loading dashboard">
+          <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {Array.from({ length: 4 }, (_, index) => <SkeletonBlock key={index} className="h-28 rounded-2xl" />)}
+          </div>
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+            <SkeletonBlock className="h-80 rounded-2xl xl:col-span-2" />
+            <SkeletonBlock className="h-80 rounded-2xl" />
+          </div>
+          <SkeletonBlock className="mt-6 h-64 rounded-2xl" />
+        </div>
       ) : error ? (
         <p className="text-red-500 text-sm">{error}</p>
       ) : (

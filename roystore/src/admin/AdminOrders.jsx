@@ -4,6 +4,7 @@ import { Eye, Search } from 'lucide-react';
 import api from '../api/axios';
 import { useFetchAll, naira, STATUSES, formatError } from './utils';
 import { StatusBadge, Modal, PageHeader, Pager } from './AdminUI';
+import { TableSkeleton } from '../components/Skeletons';
 
 const PER_PAGE = 10;
 
@@ -142,7 +143,7 @@ export default function AdminOrders() {
         </div>
 
         {loading ? (
-          <p className="text-gray-400 text-sm p-5">Loading...</p>
+          <TableSkeleton rows={6} columns={5} />
         ) : error ? (
           <p className="text-red-500 text-sm p-5">{error}</p>
         ) : (

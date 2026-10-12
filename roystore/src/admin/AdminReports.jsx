@@ -3,6 +3,7 @@ import { Download } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useFetchAll, naira, dailySales, STATUSES, STATUS_COLORS } from './utils';
 import { PageHeader } from './AdminUI';
+import { SkeletonBlock } from '../components/Skeletons';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -79,7 +80,15 @@ export default function AdminReports() {
       />
 
       {loading ? (
-        <p className="text-gray-400 text-sm">Loading...</p>
+        <div role="status" aria-label="Loading reports">
+          <div className="mb-6 grid grid-cols-2 gap-4 xl:grid-cols-4">
+            {Array.from({ length: 4 }, (_, index) => <SkeletonBlock key={index} className="h-28 rounded-2xl" />)}
+          </div>
+          <SkeletonBlock className="mb-6 h-80 rounded-2xl" />
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+            {Array.from({ length: 3 }, (_, index) => <SkeletonBlock key={index} className="h-56 rounded-2xl" />)}
+          </div>
+        </div>
       ) : error ? (
         <p className="text-red-500 text-sm">{error}</p>
       ) : (

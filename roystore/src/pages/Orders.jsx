@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Bell, Search, ChevronRight } from 'lucide-react';
 import api from '../api/axios';
 import BottomNav from '../components/BottomNav';
+import { RowSkeleton } from '../components/Skeletons';
 
 const TABS = ['All', 'Pending', 'Shipped', 'Delivered', 'Cancelled'];
 
@@ -88,7 +89,7 @@ export default function Orders() {
 
         <div className="px-4 space-y-3">
           {loading ? (
-            <p className="text-gray-400 text-sm">Loading...</p>
+            <RowSkeleton count={4} />
           ) : filtered.length === 0 ? (
             <p className="text-gray-500 text-sm">No orders found.</p>
           ) : (

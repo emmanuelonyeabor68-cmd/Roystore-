@@ -4,6 +4,7 @@ import { Trash2, Minus, Plus } from 'lucide-react';
 import api from '../api/axios';
 import { useCart } from '../context/CartContext';
 import BottomNav from '../components/BottomNav';
+import { RowSkeleton, SkeletonBlock } from '../components/Skeletons';
 
 export default function Cart() {
   const [cart, setCart] = useState(null);
@@ -32,7 +33,18 @@ export default function Cart() {
     refreshCart();
   };
 
-  if (loading) return <p className="p-4 text-gray-400 text-sm">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white pb-28 lg:pb-12">
+        <div className="mx-auto max-w-5xl space-y-5 px-4 pt-4 lg:pl-64">
+          <SkeletonBlock className="h-7 w-32" />
+          <RowSkeleton count={3} />
+          <SkeletonBlock className="h-12 w-full rounded-xl" />
+        </div>
+        <BottomNav />
+      </div>
+    );
+  }
 
   const items = cart?.items || [];
   const total = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Minus, Plus, ShoppingCart } from 'lucide-react';
 import api from '../api/axios';
 import { useCart } from '../context/CartContext';
+import { SkeletonBlock } from '../components/Skeletons';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -27,7 +28,22 @@ export default function ProductDetail() {
     }
   };
 
-  if (!product) return <p className="p-4 text-gray-400 text-sm">Loading...</p>;
+  if (!product) {
+    return (
+      <div role="status" aria-label="Loading product" className="min-h-screen bg-white">
+        <div className="mx-auto max-w-5xl lg:pl-64">
+          <SkeletonBlock className="h-72 w-full rounded-none md:h-[28rem]" />
+          <div className="space-y-4 rounded-t-3xl bg-white px-5 pt-6 lg:px-8">
+            <SkeletonBlock className="h-5 w-24 rounded-full" />
+            <SkeletonBlock className="h-8 w-3/4" />
+            <SkeletonBlock className="h-8 w-1/3" />
+            <SkeletonBlock className="h-24 w-full" />
+            <SkeletonBlock className="h-12 w-full rounded-xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
   const inStock = product.stock > 0;
 
   return (

@@ -4,6 +4,7 @@ import { ArrowLeft, Search as SearchIcon } from 'lucide-react';
 import api from '../api/axios';
 import ProductCard from '../components/ProductCard';
 import BottomNav from '../components/BottomNav';
+import { ProductGridSkeleton } from '../components/Skeletons';
 
 const chips = ['All', 'Electronics', 'Fashion', 'Accessories'];
 
@@ -104,7 +105,7 @@ export default function Search() {
 
         <div className="px-4 mt-6">
           {loading ? (
-            <p className="text-gray-400 text-sm">Loading products...</p>
+            <ProductGridSkeleton count={6} />
           ) : error && allProducts.length === 0 ? (
             <div>
               <p className="text-red-500 text-sm">{error}</p>

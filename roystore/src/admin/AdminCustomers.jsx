@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import { useFetchAll, naira } from './utils';
 import { PageHeader, Pager } from './AdminUI';
+import { TableSkeleton } from '../components/Skeletons';
 
 const PER_PAGE = 10;
 
@@ -46,7 +47,7 @@ export default function AdminCustomers() {
         </div>
 
         {loading ? (
-          <p className="text-gray-400 text-sm p-5">Loading...</p>
+          <TableSkeleton rows={6} columns={4} />
         ) : error ? (
           <p className="text-red-500 text-sm p-5">{error}</p>
         ) : (

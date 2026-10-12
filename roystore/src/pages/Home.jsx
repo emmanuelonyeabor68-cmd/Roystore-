@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import BottomNav from '../components/BottomNav';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
+import { ProductGridSkeleton } from '../components/Skeletons';
 
 const categoryRow = [
   { name: 'Electronics', image: '/electronics.jpg' },
@@ -64,7 +65,7 @@ export default function Home() {
             <h2 className="font-bold text-lg">Popular Products</h2>
             <Link to="/search" className="text-primary text-sm font-medium">View all</Link>
           </div>
-          {loading ? <p className="text-gray-400 text-sm px-4">Loading...</p> : (
+          {loading ? <div className="px-4"><ProductGridSkeleton count={4} className="grid-cols-2 gap-3 lg:grid-cols-4" /></div> : (
             <div className="flex gap-3 overflow-x-auto px-4 pb-2 lg:overflow-visible lg:grid lg:grid-cols-4 lg:gap-4" style={{ scrollbarWidth: 'none' }}>
               {popular.map((p) => <ProductCard key={p.id} product={p} className="min-w-[150px] shrink-0 lg:min-w-0" />)}
             </div>
@@ -89,7 +90,7 @@ export default function Home() {
             <h2 className="font-bold text-lg">New Arrivals</h2>
             <Link to="/search" className="text-primary text-sm font-medium">View all</Link>
           </div>
-          {loading ? <p className="text-gray-400 text-sm">Loading...</p> : (
+          {loading ? <ProductGridSkeleton count={4} /> : (
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
               {newArrivals.map((p) => <ProductCard key={p.id} product={p} />)}
             </div>

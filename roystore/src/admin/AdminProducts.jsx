@@ -3,6 +3,7 @@ import { Plus, Pencil, Trash2 } from 'lucide-react';
 import api from '../api/axios';
 import { naira, formatError } from './utils';
 import { Modal, PageHeader, Pager } from './AdminUI';
+import { TableSkeleton } from '../components/Skeletons';
 
 const PAGE_SIZE = 10; // must match PAGE_SIZE in your Django REST_FRAMEWORK settings
 const CATEGORIES = ['Electronics', 'Fashion', 'Accessories', 'Home'];
@@ -153,7 +154,7 @@ export default function AdminProducts() {
 
       <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
         {loading ? (
-          <p className="text-gray-400 text-sm p-5">Loading...</p>
+          <TableSkeleton rows={6} columns={5} />
         ) : error ? (
           <p className="text-red-500 text-sm p-5">{error}</p>
         ) : (

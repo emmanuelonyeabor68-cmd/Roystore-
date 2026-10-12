@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import api from '../api/axios';
 import BottomNav from '../components/BottomNav';
+import { RowSkeleton, SkeletonBlock } from '../components/Skeletons';
 
 const STATUS_STYLES = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -21,7 +22,20 @@ export default function OrderDetail() {
     api.get(`/api/v1/orders/${id}/`).then((res) => setOrder(res.data)).finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <p className="p-4 text-gray-400 text-sm">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white pb-24 lg:pb-12">
+        <div className="mx-auto max-w-5xl space-y-5 px-4 pt-5 lg:pl-64">
+          <SkeletonBlock className="h-7 w-40" />
+          <SkeletonBlock className="h-5 w-24 rounded-full" />
+          <SkeletonBlock className="h-4 w-20" />
+          <RowSkeleton count={3} />
+          <SkeletonBlock className="h-24 w-full rounded-2xl" />
+        </div>
+        <BottomNav />
+      </div>
+    );
+  }
   if (!order) return <p className="p-4 text-gray-400 text-sm">Order not found.</p>;
 
   return (
