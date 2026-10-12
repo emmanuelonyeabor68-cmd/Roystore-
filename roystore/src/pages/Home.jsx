@@ -25,7 +25,7 @@ export default function Home() {
     api.get('/api/v1/products/').then((res) => setProducts(res.data.results || [])).finally(() => setLoading(false));
   }, []);
 
-  const popular = products.slice(7, 15);
+  const popular = products.slice(14, 23);
   // const bestSeller = products[1];
   const newArrivals = [...products].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 4);
 
