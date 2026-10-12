@@ -35,8 +35,8 @@ export function AuthProvider({ children }) {
   };
 
 const loginWithGoogle = () => {
-  window.location.href =
-    `${api.defaults.baseURL}/social-auth/login/google-oauth2/`;
+  const baseURL = api.defaults.baseURL.replace(/\/+$/, '');
+  window.location.href = `${baseURL}/social-auth/login/google-oauth2/`;
 };
 
   const logout = async () => {
