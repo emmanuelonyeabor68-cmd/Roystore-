@@ -29,6 +29,7 @@ import AdminCustomers from './admin/AdminCustomers';
 import AdminReports from './admin/AdminReports';
 import AdminSettings from './admin/AdminSettings';
 import { Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -65,6 +66,7 @@ export default function App() {
             <Route path="/change-password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Analytics />
         </BrowserRouter>
       </CartProvider>
     </AuthProvider>
